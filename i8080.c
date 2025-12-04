@@ -81,8 +81,8 @@ static inline void i8080_wb(i8080* const c, uint16_t addr, uint8_t val) {
 
 // reads a word from memory
 static inline uint16_t i8080_rw(i8080* const c, uint16_t addr) {
-  return c->read_byte(c->userdata, addr + 1) << 8 |
-         c->read_byte(c->userdata, addr);
+  uint8_t data = c->read_byte(c->userdata, addr);
+  return (c->read_byte(c->userdata, addr + 1) << 8) | data;
 }
 
 // writes a word to memory
